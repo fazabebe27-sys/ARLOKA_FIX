@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arloka - Release Your Fantasy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABEL WARNA --- */
+        :root {
+            --primary-brown: #5D4037;
+            --dark-brown: #3E2723;
+            --gold: #D4AF37;
+            --cream: #FFF8E1;
+            --white: #FFFFFF;
+            --text-color: #333;
+        }
+
+        /* --- RESET & GLOBAL --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; color: var(--dark-brown); }
+        .script-font { font-family: 'Dancing Script', cursive; font-size: 3rem; }
+        img { max-width: 100%; height: auto; }
+        
+        /* --- HEADER --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .logo img { height: 50px; }
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 40px;
+            position: relative;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+        }
+        .auth-buttons a {
+            text-decoration: none;
+            color: var(--dark-brown);
+            margin-left: 15px;
+            font-weight: 600;
+        }
+        .btn-signup {
+            background-color: #C5A66F;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: url('pattern-batik-placeholder.jpg') no-repeat center top; /* Ganti background */
+        }
+        .hero h1 { font-size: 4rem; margin-bottom: 40px; font-weight: normal; }
+        
+        .character-cards {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+        .card-shape {
+            width: 120px;
+            height: 180px;
+            background: #ccc; /* Ganti dengan gambar karakter bentuk gunungan */
+            border-radius: 50% 50% 10px 10px; /* Bentuk menyerupai gunungan */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-welcome h2 { font-size: 2.5rem; color: #D98C38; margin-bottom: 20px; }
+        .hero-quote { max-width: 600px; margin: 0 auto 40px; font-style: italic; }
+
+        /* --- AR & SHOP BUTTONS --- */
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+        }
+        .btn-action {
+            background-color: #EBC663;
+            padding: 15px 40px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            width: 300px;
+        }
+        .btn-action:hover { transform: scale(1.05); }
+        .btn-icon { font-size: 2rem; color: var(--dark-brown); }
+        .btn-text span { display: block; font-size: 0.8rem; font-weight: bold; }
+        
+        /* --- MAP SECTION --- */
+        .map-section { text-align: center; padding: 40px; }
+        .map-placeholder {
+            width: 80%;
+            height: 300px;
+            background-color: #8D6E63; /* Ganti dengan gambar peta Indonesia cokelat */
+            margin: 0 auto;
+            mask-image: url('map-mask.png'); /* Opsional untuk bentuk peta */
+        }
+
+        /* --- CULTURE SECTION --- */
+        .culture { text-align: center; padding: 60px 20px; background-color: #FFFBE6; }
+        .culture h2 { font-size: 3.5rem; margin-bottom: 20px; }
+        .culture p { max-width: 700px; margin: 0 auto 40px; }
+        
+        /* --- ABOUT ARLOKA --- */
+        .about { text-align: center; padding: 60px 20px; background-color: #F5F5DC; }
+        .feather-logo { width: 150px; margin-bottom: 20px; }
+        .about-desc { max-width: 800px; margin: 0 auto; font-size: 1.1rem; }
+
+        /* --- PRODUCT DETAIL --- */
+        .product-detail { padding: 60px 20px; background-color: #FDFBF7; text-align: center; }
+        .product-detail h2 { font-size: 3rem; color: var(--dark-brown); margin-bottom: 10px; }
+        .product-detail .sub { font-family: 'Dancing Script'; font-size: 2rem; color: #C68E17; }
+        
+        .product-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        .product-img { background: #ddd; height: 300px; border-radius: 10px; } /* Placeholder Foto Produk */
+
+        /* --- CHARACTERS --- */
+        .characters { padding: 60px 20px; text-align: center; }
+        .char-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .char-item { width: 200px; }
+        .char-img { width: 150px; height: 150px; background: #ccc; border-radius: 50%; margin: 0 auto 15px; } /* Placeholder Wajah */
+        .char-name { font-family: 'Playfair Display'; font-weight: bold; font-size: 1.2rem; }
+        .char-desc { font-size: 0.9rem; color: #777; }
+
+        /* --- VALUE PROPOSITIONS --- */
+        .values { padding: 60px 20px; text-align: center; }
+        .values h2 { margin-bottom: 10px; }
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        .value-card {
+            padding: 30px;
+            border-radius: 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        /* Warna Background Card sesuai desain */
+        .bg-grey { background-color: #A69B8F; }
+        .bg-beige { background-color: #E6D6B9; color: var(--dark-brown); }
+        .bg-brown { background-color: #8D591F; }
+        .bg-dark { background-color: #2E2818; }
+        .bg-gold { background-color: #7D6608; }
+        .bg-yellow { background-color: #FBE696; color: var(--dark-brown); }
+        .bg-light-yellow { background-color: #FBF2C8; color: var(--dark-brown); }
+        .bg-pink { background-color: #FFE0D6; color: var(--dark-brown); }
+        .bg-green { background-color: #7B8B48; }
+
+        .value-card i { font-size: 2.5rem; margin-bottom: 15px; }
+        .value-card p { font-size: 0.9rem; font-weight: 600; }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 30px;
+            text-align: center;
+            background-color: var(--white);
+            border-top: 1px solid #eee;
+        }
+        .social-icons { margin-top: 10px; }
+        .social-icons i { font-size: 1.5rem; margin: 0 10px; cursor: pointer; color: var(--dark-brown); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Arloka Logo"> 
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <i class="fas fa-search" style="position: absolute; right: 15px; top: 12px; color: #999;"></i>
+        </div>
+        <div class="auth-buttons">
+            <a href="#">Log in</a>
+            <a href="#" class="btn-signup">Sign Up</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Release Your Fantasy</h1>
+        
+        <div class="character-cards">
+            <div class="card-shape"><img src="1.png" style="object-fit:cover; height:100%; width:100%"></div>
+            <div class="card-shape"><img src="2.png" style="object-fit:cover; height:100%; width:100%"></div>
+            <div class="card-shape"><img src="3.png" style="object-fit:cover; height:100%; width:100%"></div>
+            <div class="card-shape"><img src="4.png" style="object-fit:cover; height:100%; width:100%"></div>
+            <div class="card-shape"><img src="5.png" style="object-fit:cover; height:100%; width:100%"></div>
+        </div>
+
+        <div class="hero-welcome">
+            <h2>Selamat Menjelajahi Petualangan Baru</h2>
+            <p class="hero-quote">"Satu goresan hari ini bisa membuka dunia yang belum pernah kamu lihat. Dan jangan takut mencoba, karena setiap petualangan dimulai dari keberanian pertama."</p>
+        </div>
+
+        <div class="action-buttons">
+            <div class="btn-action">
+                <div class="btn-icon"><i class="fas fa-camera"></i></div>
+                <div class="btn-text">
+                    <strong>AR</strong>
+                    <span>Klik untuk menjalankan fitur AR</span>
+                </div>
+            </div>
+            <div class="btn-action">
+                <div class="btn-icon"><i class="fas fa-shopping-bag"></i></div>
+                <div class="btn-text">
+                    <strong>Shop</strong>
+                    <span>Klik untuk masuk katalog belanja</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-section">
+            <img src="peta1.png" alt="Map Indonesia">
+        </div>
+    </section>
+
+    <section class="culture">
+        <h2 class="script-font">Kenali Budaya Bumi Pertiwi</h2>
+        <p>Rasakan petualangan menjelajahi Indonesia melalui warna, cerita, dan teknologi AR yang menghidupkan kembali legenda dari setiap goresan.</p>
+        
+        <div style="display: flex; justify-content: space-between; margin-top: -50px;">
+            <img src="pp1.png" style="width:40%; height:40%" >
+            <img src="pp2.png" style="width:40%; height:40%" >
+        </div>
+    </section>
+
+    <section class="about">
+        <img src="logo.png" class="feather-logo" alt="Feather Icon">
+        <p class="about-desc">
+            Arloka Adalah Pensil Warna Inovatif Dan Ramah Lingkungan Yang Mengenalkan Kembali Budaya Indonesia Melalui Teknologi Augmented Reality (AR).
+            Dengan Konsep Edutainment, Arloka Membantu Meningkatkan Kreativitas Serta Perkembangan Anak, Sekaligus Mendukung Tujuan Keberlanjutan.
+        </p>
+    </section>
+
+    <section class="product-detail">
+        <h2 class="script-font">Detail Produk</h2>
+        <p class="sub">Pensil warna Arloka</p>
+        
+        <div class="product-showcase">
+            <div class="product-img"><img src="ppp3.png" style="width:100%; height:100%; object-fit:cover;"></div>
+            <div class="product-img"><img src="ppp4.png" style="width:100%; height:100%; object-fit:cover;"></div>
+            <div class="product-img"><img src="ppp1.png" style="width:100%; height:100%; object-fit:cover;"></div>
+            <div class="product-img"><img src="ppp2.png" style="width:100%; height:100%; object-fit:cover;"></div>
+        </div>
+    </section>
+
+    <section class="characters">
+        <h2 class="script-font">Tokoh</h2>
+        <h3 style="color: #A0522D;">Kerajaan Galuh</h3>
+
+        <div class="char-grid">
+            <div class="char-item">
+                <div class="char-img"><img src="p1.png" style="border-radius:100%;"></div>
+                <div class="char-name">Wretikandayun</div>
+                <div class="char-desc">Raja Galuh Pertama<br>(612-702 M)</div>
+            </div>
+            <div class="char-item">
+                <div class="char-img"><img src="p2.png" style="border-radius:50%;"></div>
+                <div class="char-name">Mandiminyak</div>
+                <div class="char-desc">Raja Galuh Kedua<br>(702-709 M)</div>
+            </div>
+            <div class="char-item">
+                <div class="char-img"><img src="p3.png" style="border-radius:50%;"></div>
+                <div class="char-name">Dewi Nganingrum</div>
+                <div class="char-desc">Ibu dari seorang<br>Raja Ciung Wanara</div>
+            </div>
+             <div class="char-item">
+                <div class="char-img"><img src="p4.png" style="border-radius:50%;"></div>
+                <div class="char-name">Ciung Wanara</div>
+                <div class="char-desc">Pangeran Galuh<br>yang bijaksana & adil</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values">
+        <h2 class="script-font">Value Propositions</h2>
+        <p style="color: #8D591F; font-size: 1.5rem;">Pensil warna Arloka</p>
+
+        <div class="values-grid">
+            <div class="value-card bg-grey">
+                <i class="fas fa-cube"></i>
+                <p>Teknologi Augmented Reality (AR) edukasi sejarah</p>
+            </div>
+            <div class="value-card bg-beige">
+                <i class="fas fa-address-card"></i>
+                <p>Kartu AR berfungsi untuk menjadi objek scan</p>
+            </div>
+            <div class="value-card bg-brown">
+                <i class="fas fa-pencil-alt"></i>
+                <p>Isian pensil warna dari cangkang telur</p>
+            </div>
+            <div class="value-card bg-light-yellow">
+                <i class="fas fa-fan"></i>
+                <p>Ukiran tradisional bertemakan Kerajaan Galuh</p>
+            </div>
+            <div class="value-card bg-dark">
+                <i class="fas fa-wind"></i>
+                <p>Aroma khas Tradisional pada pensil warna</p>
+            </div>
+            <div class="value-card bg-gold">
+                <i class="fas fa-pen-nib"></i>
+                <p>Bentuk segitiga pada pensil memberikan kenyamanan</p>
+            </div>
+            <div class="value-card bg-yellow">
+                <i class="fas fa-leaf"></i>
+                <p>Desain kemasan kekinian dan bermakna seni</p>
+            </div>
+            <div class="value-card bg-light-yellow">
+                <i class="fas fa-lightbulb"></i>
+                <p>Edukasi mengenai kreativitas melalui media sosial</p>
+            </div>
+            <div class="value-card bg-pink">
+                <i class="fas fa-palette"></i>
+                <p>Terdapat media mewarnai secara langsung</p>
+            </div>
+            <div class="value-card bg-green">
+                <i class="fas fa-recycle"></i>
+                <p>Kemasan ramah lingkungan dari kertas craft</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>CONTACT US</p>
+        <div class="social-icons">
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-youtube"></i>
+            <i class="fab fa-tiktok"></i>
+        </div>
+        <p style="font-size: 0.8rem; margin-top: 10px;">@arloka_id | @arlokapencils | @pensilwarna_arloka</p>
+    </footer>
+
+</body>
+</html>
